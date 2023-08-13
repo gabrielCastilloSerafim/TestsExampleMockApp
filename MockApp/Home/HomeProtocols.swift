@@ -22,7 +22,7 @@ protocol HomeViewProtocol: AnyObject, UIViewController {
 protocol HomeRouterProtocol: AnyObject {
     
     // MARK: Methods
-    static func createModule() -> UIViewController
+    static func createModule(netWorkService: NetworkProtocol) -> UIViewController
 
 }
 

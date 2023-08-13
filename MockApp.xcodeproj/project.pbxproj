@@ -100,8 +100,8 @@
 		FF9BBC092A84EDD3004016F7 /* MockApp */ = {
 			isa = PBXGroup;
 			children = (
-				FFED33732A84F2D500CE5512 /* NetworkService */,
 				FFED33672A84F2A400CE5512 /* App */,
+				FFED33732A84F2D500CE5512 /* NetworkService */,
 				FFED33682A84F2B900CE5512 /* Home */,
 				FFED33782A84F4C800CE5512 /* Second */,
 				FF9BBC182A84EDD4004016F7 /* Info.plist */,

@@ -11,11 +11,11 @@ import UIKit
 class HomeRouter: HomeRouterProtocol {
 
     // MARK: Builder
-    static func createModule() -> UIViewController {
+    static func createModule(netWorkService: NetworkProtocol = NetWorkService.shared) -> UIViewController {
 
         let view: HomeViewProtocol = HomeView()
         let presenter: HomePresenterProtocol & HomeInteractorToPresenterProtocol = HomePresenter()
-        let interactor: HomePresenterToInteractorProtocol = HomeInteractor()
+        let interactor: HomePresenterToInteractorProtocol = HomeInteractor(netWorkService: netWorkService)
         let router: HomeRouterProtocol = HomeRouter()
             
         view.presenter = presenter

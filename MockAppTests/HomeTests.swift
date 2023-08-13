@@ -12,17 +12,19 @@ final class HomeTests: XCTestCase {
     
     //MARK: SETUP
     var SUT: HomeViewProtocol!
-    var testsQueue = DispatchQueue(label: Bundle.main.bundleIdentifier ?? "testsQueue")
+    var homeTestsNetworkService: NetworkProtocol!
     
     override func setUpWithError() throws {
         super.setUp()
         
-        SUT = HomeRouter.createModule() as? any HomeViewProtocol
+        homeTestsNetworkService = TestsNetworkService()
+        SUT = HomeRouter.createModule(netWorkService: homeTestsNetworkService) as? any HomeViewProtocol
     }
     
     override func tearDownWithError() throws {
         
         SUT = nil
+        homeTestsNetworkService = nil
         
         super.tearDown()
     }
@@ -30,24 +32,46 @@ final class HomeTests: XCTestCase {
     //MARK: TESTS
     func testViewDidLoad() throws {
         
+        // Create expectation to be waited
+        guard let testsNetworkService = homeTestsNetworkService as? TestsNetworkService else {
+            
+            XCTFail("Could no cast network service")
+            return
+        }
+        
+        let getMockDataExpectation =  XCTestExpectation(description: "Get getMockData expectation")
+        
+        testsNetworkService.expectation = getMockDataExpectation
+        
         // Call method
         SUT.presenter?.viewDidLoad()
         
-        // Create expectation to be waited
-        let myExpectation = XCTestExpectation(description: "Get getMockData expectation")
-        
-        // Enable expectation for needed time
-        testsQueue.asyncAfter(deadline: .now() + 2) {
-            
-            myExpectation.fulfill()
-        }
-        
         // Set wait for expectation
-        wait(for: [myExpectation])
+        wait(for: [getMockDataExpectation], timeout: 2.0)
         
         // When expectation gets fulfilled perform asserts
         XCTAssert(SUT.view.backgroundColor == .red, "Failure message")
         XCTAssert(SUT.title == "Anderson", "Failure message")
+    }
+    
+}
+
+
+
+// MARK: Home Tests Network service
+class TestsNetworkService: NetworkProtocol {
+    
+    var name: String?
+    
+    var expectation: XCTestExpectation?
+    
+    func getMockData(completion: @escaping (String) -> Void) {
+        
+        NetWorkService.shared.getMockData { name in
+            
+            self.expectation?.fulfill()
+            completion(name)
+        }
     }
     
 }
