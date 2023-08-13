@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FF9B8A232A896A08005407F4 /* MockApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MockApp.xctestplan; sourceTree = "<group>"; };
 		FF9BBC072A84EDD3004016F7 /* MockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF9BBC0A2A84EDD3004016F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF9BBC0C2A84EDD3004016F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		FF9BBBFE2A84EDD3004016F7 = {
 			isa = PBXGroup;
 			children = (
+				FF9B8A232A896A08005407F4 /* MockApp.xctestplan */,
 				FF9BBC092A84EDD3004016F7 /* MockApp */,
 				FF9BBC232A84EDE4004016F7 /* MockAppTests */,
 				FF9BBC082A84EDD3004016F7 /* Products */,

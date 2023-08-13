@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "E6CEFEDD-0D46-4DEE-B95B-22504AD1EA8D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MockApp.xcodeproj",
+      "identifier" : "FF9BBC062A84EDD3004016F7",
+      "name" : "MockApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MockApp.xcodeproj",
+        "identifier" : "FF9BBC212A84EDE4004016F7",
+        "name" : "MockAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
