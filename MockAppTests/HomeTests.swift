@@ -40,6 +40,7 @@ final class HomeTests: XCTestCase {
         }
         
         let getMockDataExpectation =  XCTestExpectation(description: "Get getMockData expectation")
+        getMockDataExpectation.expectedFulfillmentCount = 1
         
         testsNetworkService.expectation = getMockDataExpectation
         
