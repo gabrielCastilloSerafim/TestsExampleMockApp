@@ -19,10 +19,16 @@ class SecondView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
     }
 
     // MARK: Methods
 
+    private func setupUI() {
+        
+        title = "Second"
+        view.backgroundColor = .lightGray
+    }
 }
 
 // MARK: (View <- Presenter)

@@ -28,5 +28,17 @@ class HomeRouter: HomeRouterProtocol {
     }
 
     // MARK: Methods
+    func navigateToSecondScreen(fromVC: UIViewController) {
+        
+        let secondScreenVC = SecondRouter.createModule()
+        
+        fromVC.navigationController?.pushViewController(secondScreenVC, animated: true)
+    }
     
+    func presentSecondScreen(fromVC: UIViewController) {
+        
+        let secondScreenVC = SecondRouter.createModule()
+        
+        fromVC.present(secondScreenVC, animated: true)
+    }
 }

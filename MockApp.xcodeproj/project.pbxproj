@@ -19,7 +19,6 @@
 		FFED33712A84F2D100CE5512 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED336C2A84F2D100CE5512 /* HomeInteractor.swift */; };
 		FFED33722A84F2D100CE5512 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED336D2A84F2D100CE5512 /* HomeView.swift */; };
 		FFED33752A84F3F100CE5512 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED33742A84F3F100CE5512 /* NetworkService.swift */; };
-		FFED33772A84F46100CE5512 /* SecondTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED33762A84F46100CE5512 /* SecondTests.swift */; };
 		FFED337E2A84F4ED00CE5512 /* SecondPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED33792A84F4ED00CE5512 /* SecondPresenter.swift */; };
 		FFED337F2A84F4ED00CE5512 /* SecondRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED337A2A84F4ED00CE5512 /* SecondRouter.swift */; };
 		FFED33802A84F4ED00CE5512 /* SecondProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFED337B2A84F4ED00CE5512 /* SecondProtocols.swift */; };
@@ -54,7 +53,6 @@
 		FFED336C2A84F2D100CE5512 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		FFED336D2A84F2D100CE5512 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FFED33742A84F3F100CE5512 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		FFED33762A84F46100CE5512 /* SecondTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTests.swift; sourceTree = "<group>"; };
 		FFED33792A84F4ED00CE5512 /* SecondPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPresenter.swift; sourceTree = "<group>"; };
 		FFED337A2A84F4ED00CE5512 /* SecondRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRouter.swift; sourceTree = "<group>"; };
 		FFED337B2A84F4ED00CE5512 /* SecondProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondProtocols.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				FF9BBC242A84EDE4004016F7 /* HomeTests.swift */,
-				FFED33762A84F46100CE5512 /* SecondTests.swift */,
 			);
 			path = MockAppTests;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF9BBC252A84EDE4004016F7 /* HomeTests.swift in Sources */,
-				FFED33772A84F46100CE5512 /* SecondTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

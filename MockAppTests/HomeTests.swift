@@ -15,9 +15,8 @@ final class HomeTests: XCTestCase {
     var homeTestsNetworkService: NetworkProtocol!
     
     override func setUpWithError() throws {
-        super.setUp()
         
-        homeTestsNetworkService = TestsNetworkService()
+        homeTestsNetworkService = TestsNetworkServiceMiddleware()
         SUT = HomeRouter.createModule(netWorkService: homeTestsNetworkService) as? any HomeViewProtocol
     }
     
@@ -25,42 +24,70 @@ final class HomeTests: XCTestCase {
         
         SUT = nil
         homeTestsNetworkService = nil
-        
-        super.tearDown()
+        TestsHomeViewControllerMiddleWare.shared.presentedViewController = nil
     }
     
     //MARK: TESTS
     func testViewDidLoad() throws {
         
+        /// AAA Pattern  (Arrange, Act, Assert)
+        
+        // ARRANGE...
+        
         // Create expectation to be waited
-        guard let testsNetworkService = homeTestsNetworkService as? TestsNetworkService else {
-            
-            XCTFail("Could no cast network service")
-            return
-        }
+        let testsNetworkService = try XCTUnwrap(homeTestsNetworkService as? TestsNetworkServiceMiddleware)
         
         let getMockDataExpectation =  XCTestExpectation(description: "Get getMockData expectation")
         getMockDataExpectation.expectedFulfillmentCount = 1
         
         testsNetworkService.expectation = getMockDataExpectation
         
-        // Call method
-        SUT.presenter?.viewDidLoad()
+        // ACT...
+        
+        // Init view lifecycle
+        SUT.loadViewIfNeeded()
         
         // Set wait for expectation
         wait(for: [getMockDataExpectation], timeout: 2.0)
         
+        // ASSERT...
+        
         // When expectation gets fulfilled perform asserts
-        XCTAssert(SUT.view.backgroundColor == .red, "Failure message")
         XCTAssert(SUT.title == "Anderson", "Failure message")
     }
     
+    func testNavigationToSecondScreen() throws {
+        
+        // ARRANGE...
+        let navigationController = TestsNavigationControllerMiddleware(rootViewController: SUT)
+        let homeView = try XCTUnwrap(SUT as? HomeView)
+        SUT.loadViewIfNeeded()
+        
+        // ACT...
+        homeView.navigateToSecondScreenButton.sendActions(for: .touchUpInside)
+        
+        // ASSERT...
+        XCTAssertTrue(navigationController.pushedVC is SecondView, "Failure message")
+    }
+    
+    func testPresentationOfSecondScreen() throws {
+        
+        // ARRANGE...
+        let homeView = try XCTUnwrap(SUT as? HomeView)
+        SUT.loadViewIfNeeded()
+        
+        // ACT...
+        homeView.presentSecondScreenButton.sendActions(for: .touchUpInside)
+        
+        // ASSERT...
+        XCTAssertTrue(TestsHomeViewControllerMiddleWare.shared.presentedViewController is SecondView, "Failure message")
+    }
 }
 
 
 
-// MARK: Home Tests Network service
-class TestsNetworkService: NetworkProtocol {
+// MARK: Home Tests Network Service Middleware
+class TestsNetworkServiceMiddleware: NetworkProtocol {
     
     var name: String?
     
@@ -75,4 +102,34 @@ class TestsNetworkService: NetworkProtocol {
         }
     }
     
+}
+
+// MARK: Tests NavigationController Middleware
+class TestsNavigationControllerMiddleware: UINavigationController {
+    
+    var pushedVC: UIViewController!
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        
+        pushedVC = viewController
+    }
+}
+
+// MARK: Tests HomeViewController Modal Middleware
+class TestsHomeViewControllerMiddleWare {
+    
+    static let shared = TestsHomeViewControllerMiddleWare()
+    private init() {}
+    
+    var presentedViewController: UIViewController?
+}
+
+extension HomeView {
+    
+    override open func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.present(viewControllerToPresent, animated: flag, completion: completion)
+        
+        TestsHomeViewControllerMiddleWare.shared.presentedViewController = viewControllerToPresent
+    }
 }

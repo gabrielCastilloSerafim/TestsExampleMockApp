@@ -23,6 +23,20 @@ extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
         interactor?.getModuleData()
     }
+    
+    func navigateToSecondScreen() {
+        
+        guard let view = view else { return }
+        
+        router?.navigateToSecondScreen(fromVC: view)
+    }
+    
+    func presentSecondScreen() {
+        
+        guard let view = view else { return }
+        
+        router?.presentSecondScreen(fromVC: view)
+    }
 }
 
 // MARK: (Presenter <- Interactor)

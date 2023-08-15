@@ -24,6 +24,8 @@ protocol HomeRouterProtocol: AnyObject {
     // MARK: Methods
     static func createModule(netWorkService: NetworkProtocol) -> UIViewController
 
+    func navigateToSecondScreen(fromVC: UIViewController)
+    func presentSecondScreen(fromVC: UIViewController)
 }
 
 // MARK: (VIEW -> PRESENTER)
@@ -36,7 +38,8 @@ protocol HomePresenterProtocol: AnyObject {
     
     // MARK: Methods
     func viewDidLoad()
-
+    func navigateToSecondScreen()
+    func presentSecondScreen()
 }
 
 // MARK: (INTERACTOR -> PRESENTER)
